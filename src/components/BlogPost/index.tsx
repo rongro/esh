@@ -5,6 +5,8 @@ import { useLoaderData, useNavigate } from 'react-router-dom';
 import { getBlogPost, Post } from "../../api/blog";
 import Header from '../Header';
 
+// I did not have enough time to finish the layout properly.
+// Also missing the actual post, so I used the description instead.
 type Props = {
     params: {
         postId: string,

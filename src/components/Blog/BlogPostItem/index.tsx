@@ -5,6 +5,8 @@ import { Post } from '../../../api/blog';
 import { useNavigate } from 'react-router-dom';
 import { Path } from '../../../router';
 
+// I did not have enough time to finish the layout properly
+
 type BlogPostItemProps = {
     post: Post,
 }
