@@ -1,7 +1,8 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from "react-router-dom";
+import { fadeIn } from '../../styles/animations';
 import '../../i18n/i18n';
 import Header from '../Header';
 
@@ -42,15 +43,6 @@ const HomeContainer = styled.div`
     height: calc(50% + 250px);
 `;
 
-
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`;
 
 const HomeTitle = styled.h3`
     opacity: 0;

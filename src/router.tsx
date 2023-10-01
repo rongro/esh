@@ -2,13 +2,18 @@ import Home from './components/Home';
 import Blog from './components/Blog';
 import { createBrowserRouter } from "react-router-dom";
 
+export enum Path {
+    Home = '/',
+    Blog = '/blog',
+}
+
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: Path.Home,
     element: <Home />,
   },
   {
-    path: "/blog",
+    path: Path.Blog,
     element: <Blog />,
   },
 ]);
