@@ -1,7 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Path } from '../../../router';
 import '../../../i18n/i18n';
 
@@ -14,22 +14,29 @@ const NavBarItem = styled.div<{ selected?: boolean; }>`
     font-size: 14px;
     display: flex;
     margin: 26px 26px 16px;
-    cursor: pointer;
     transition: opacity 0.5s;
-    &:hover {
-        opacity: 50%;
-    }
-    color: ${({ selected }) => selected ? '#2E2F38' : '#6A6D82'}
+    ${({ selected }) => selected ?
+    css`
+        color: #2E2F38;
+    `:
+    css`
+        color: #6A6D82;
+        cursor: pointer;
+        &:hover {
+            opacity: 50%;
+        }
+    `};
 `;
 
 export default function NavBar() {
     const { t } = useTranslation();
 	const location = useLocation();
+    const navigate = useNavigate();
 
     console.log(location.pathname);
 
     return (<StyledNavBar>
-                <NavBarItem selected={location.pathname === Path.Home}>{t('home')}</NavBarItem>
-                <NavBarItem selected={location.pathname === Path.Blog}>{t('blog')}</NavBarItem>
+                <NavBarItem selected={location.pathname === Path.Home} onClick={() => navigate(Path.Home)}>{t('home')}</NavBarItem>
+                <NavBarItem selected={location.pathname === Path.Blog} onClick={() => navigate(Path.Blog)}>{t('blog')}</NavBarItem>
         </StyledNavBar>);
 };

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from "react-router-dom";
 import { fadeIn } from '../../styles/animations';
+import { Path } from '../../router';
 import '../../i18n/i18n';
 import Header from '../Header';
 
@@ -80,7 +81,7 @@ export default function Home() {
                 <Header />
                 <HomeContainer>
                     <HomeTitle>{t('new.bank.coming')}</HomeTitle>
-                    <BlogLink onClick={() => navigate('/blog')}>{t('home.blog.link')}</BlogLink>
+                    <BlogLink onClick={() => navigate(Path.Blog)}>{t('home.blog.link')}</BlogLink>
                 </HomeContainer>
             </StyledHome>);
 };
