@@ -1,10 +1,14 @@
 import Home from './components/Home';
 import Blog from './components/Blog';
-import { createBrowserRouter } from "react-router-dom";
+import BlogPost, {
+  loader as blogPostLoader,
+} from './components/BlogPost';
+import { createBrowserRouter, LoaderFunction } from "react-router-dom";
 
 export enum Path {
     Home = '/',
     Blog = '/blog',
+    BlogPost = '/blog/:postId',
 }
 
 const router = createBrowserRouter([
@@ -15,6 +19,11 @@ const router = createBrowserRouter([
   {
     path: Path.Blog,
     element: <Blog />,
+  },
+  {
+    path: Path.BlogPost,
+    element: <BlogPost />,
+    loader: blogPostLoader as unknown as LoaderFunction<any>,
   },
 ]);
 

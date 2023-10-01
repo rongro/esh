@@ -27,11 +27,10 @@ const LanguageOptions = styled.div<{ show?: boolean; isLtr?: boolean;}>`
     ${({ show }) => show ? 
         css`
             opacity: 1;
-            animation: ${fadeIn} 0.5s ease-in-out;
+            animation: ${fadeIn} 0.5s ease-in-out forwards;
         `: 
         css`
             opacity: 0;
-            animation: ${fadeOut} 0.5s ease-in-out;
         `}
     ${({ isLtr }) => isLtr ? 
         css`

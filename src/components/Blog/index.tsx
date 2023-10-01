@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import '../../i18n/i18n';
 import Header from '../Header';
+import BlogPostItem from './BlogPostItem';
+import { getBlogPosts } from '../../api/blog';
 
 
 const StyledBlog = styled.div`
@@ -11,12 +13,19 @@ const StyledBlog = styled.div`
     height: 100vh;
 `;
 
+const BlogContainer = styled.div`
+`;
+
 export default function Blog() {
-    const { t, i18n } = useTranslation();
+    const { i18n } = useTranslation();
     document.body.dir = i18n.dir();
+
+    const { posts } = getBlogPosts();
 
     return (<StyledBlog>
                 <Header />
-                {t('blog')}
+                <BlogContainer>
+                    {posts.map(post => <BlogPostItem key={post.id} post={post} />)}
+                </BlogContainer>
             </StyledBlog>);
 };

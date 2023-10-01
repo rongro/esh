@@ -33,8 +33,6 @@ export default function NavBar() {
 	const location = useLocation();
     const navigate = useNavigate();
 
-    console.log(location.pathname);
-
     return (<StyledNavBar>
                 <NavBarItem selected={location.pathname === Path.Home} onClick={() => navigate(Path.Home)}>{t('home')}</NavBarItem>
                 <NavBarItem selected={location.pathname === Path.Blog} onClick={() => navigate(Path.Blog)}>{t('blog')}</NavBarItem>
