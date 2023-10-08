@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import styled, { css } from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { Language } from '../../../i18n/consts';
 import LanguageIcon from '../LanguageIcon';
-import { fadeIn, fadeOut } from '../../../styles/animations';
+import { fadeIn } from '../../../styles/animations';
 import '../../../i18n/i18n';
 
 const StyledLanguageSelector = styled.div`
@@ -15,7 +15,7 @@ const LanguageIconWrapper = styled.div`
     cursor: pointer;
 `;
 
-const LanguageOptions = styled.div<{ show?: boolean; isLtr?: boolean;}>`
+const LanguageOptions = styled.div<{ $show: boolean; $isLtr: boolean;}>`
     position: absolute;
     top: 46px;
     display: flex;
@@ -24,7 +24,7 @@ const LanguageOptions = styled.div<{ show?: boolean; isLtr?: boolean;}>`
     background-color: white;
     padding: 10px 0;
     flex-direction: column;
-    ${({ show }) => show ? 
+    ${({ $show }) => $show ? 
         css`
             opacity: 1;
             animation: ${fadeIn} 0.5s ease-in-out forwards;
@@ -32,7 +32,7 @@ const LanguageOptions = styled.div<{ show?: boolean; isLtr?: boolean;}>`
         css`
             opacity: 0;
         `}
-    ${({ isLtr }) => isLtr ? 
+    ${({ $isLtr }) => $isLtr ? 
         css`
             right: 0;
         `: 
@@ -41,22 +41,35 @@ const LanguageOptions = styled.div<{ show?: boolean; isLtr?: boolean;}>`
         `}
 `;
 
-const LanguageOption = styled.div<{ selected?: boolean; }>`
+const LanguageOption = styled.div<{ selected: boolean; }>`
     font-size: 20px;
     line-height: 32px;
     text-align: center;
     padding: 5px 15px;
     color: #2E2F38;
-    opacity: ${({ selected }) => selected ? 0.38 : 1};
-    cursor: ${({ selected }) => selected ? 'default' : 'pointer'};
+
+    ${({ selected }) => selected ? 
+        css`
+            opacity: 0.38;
+            cursor: default;
+        ` : 
+        css`
+            opacity: 1;
+            cursor: pointer;
+
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.04);
+            }
+        `
+    }
 `;
 
 export default function LanguageSelector() {
-    const [isOptionsShown, setIsOptionsShown] = useState(false);
-    const [selectedLanguage, setSelectedLanguage] = useState(Language.En);
     const { i18n } = useTranslation();
+    const [isOptionsShown, setIsOptionsShown] = useState(false);
+    const [selectedLanguage, setSelectedLanguage] = useState(i18n.language || Language.En);
     
-    const changeLanguage = (lng: Language) => {
+    const changeLanguage = useCallback((lng: Language) => {
         if (lng === selectedLanguage) {
             return null;
         }
@@ -65,12 +78,29 @@ export default function LanguageSelector() {
         setSelectedLanguage(lng);
         setIsOptionsShown(false);
         document.body.dir = i18n.dir();
-    };
-      
+    }, [i18n, selectedLanguage]);
     
-    return (<StyledLanguageSelector>
+    const wrapperRef = useRef<HTMLDivElement>(null);
+
+    const handleMouseEvent = useCallback((event: MouseEvent) => {
+        if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
+            if (isOptionsShown) {
+                setIsOptionsShown(!isOptionsShown);
+            }
+        }
+    }, [isOptionsShown]);
+
+    useEffect(() => {
+        window.addEventListener('mouseup', handleMouseEvent, false);
+        return () => {
+            window.removeEventListener('mouseup', handleMouseEvent, false);
+        }
+    }, [handleMouseEvent]);
+
+
+    return (<StyledLanguageSelector ref={wrapperRef}>
                 <LanguageIconWrapper onClick={() => setIsOptionsShown(!isOptionsShown)}><LanguageIcon /></LanguageIconWrapper>
-                <LanguageOptions show={isOptionsShown} isLtr={selectedLanguage === Language.En}>
+                <LanguageOptions $show={isOptionsShown} $isLtr={selectedLanguage === Language.En}>
                     <LanguageOption selected={selectedLanguage === Language.En} onClick={() => changeLanguage(Language.En)}>English</LanguageOption>
                     <LanguageOption selected={selectedLanguage === Language.He} onClick={() => changeLanguage(Language.He)}>עברית</LanguageOption>
                 </LanguageOptions>

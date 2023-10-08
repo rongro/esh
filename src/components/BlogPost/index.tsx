@@ -5,8 +5,6 @@ import { useLoaderData, useNavigate } from 'react-router-dom';
 import { getBlogPost, Post } from "../../api/blog";
 import Header from '../Header';
 
-// I did not have enough time to finish the layout properly.
-// Also missing the actual post, so I used the description instead.
 type Props = {
     params: {
         postId: string,
@@ -23,19 +21,18 @@ const StyledPost = styled.div`
 `;
 
 const PostWrapper = styled.div`
-    margin-bottom: 20px;
-    padding: 20px;
+    padding: 72px 15% 20px;
 `;
 
 const Back = styled.div`
     font-size: 14px;
     line-height: 20px;
-    margin: 0 20px;
     cursor: pointer;
+    margin-bottom: 26px;
 `;
 
 const PostTitle = styled.div`
-    font-size: 20px;
+    font-size: 36px;
     line-height: 28px;
     margin-bottom: 20px;
 `;
@@ -43,7 +40,8 @@ const PostTitle = styled.div`
 const PostInfo = styled.div`
     font-size: 14px;
     line-height: 20px;
-    margin-bottom: 5px;
+    margin-bottom: 20px;
+    color: #6A6D82;
 `;
 
 const PostContent = styled.div`
@@ -53,6 +51,7 @@ const PostContent = styled.div`
 
 const PostImage = styled.img`
     width: 100%;
+    border-radius: 16px;
 `;
 
 const PostedBy = styled.div`
@@ -64,22 +63,23 @@ const PostDate = styled.div`
 `;
 
 export default function BlogPost() {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
     const navigate = useNavigate();
     const { post } = useLoaderData() as { post: Post };
+    document.body.dir = i18n.dir();
 
-    const {postedBy, date, title, description, image } = post;
+    const {id, date, image } = post;
 
     return <StyledPost>
                 <Header />
-                <Back onClick={() => navigate(-1)}>{t('back')}</Back>
                 <PostWrapper>
-                <PostTitle>{t(title)}</PostTitle>
+                    <Back onClick={() => navigate(-1)}>{t('back')}</Back>
+                    <PostTitle>{t(`blog.post.title.${id}`)}</PostTitle>
                     <PostInfo>
-                        <PostDate>{t(date)}</PostDate> · <PostedBy>{t(postedBy)}</PostedBy>
+                        <PostDate>{t(date)}</PostDate> · <PostedBy>{t(`blog.post.posted.by.${id}`)}</PostedBy>
                     </PostInfo>
                     <PostImage src={image} />
-                    <PostContent>{t(description)}</PostContent>
+                    <PostContent dangerouslySetInnerHTML={{ __html: t(`blog.post.content.${id}`) }} />
                 </PostWrapper>
     </StyledPost>
 

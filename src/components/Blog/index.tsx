@@ -14,6 +14,7 @@ const StyledBlog = styled.div`
 `;
 
 const BlogContainer = styled.div`
+    padding-top: 72px;
 `;
 
 export default function Blog() {

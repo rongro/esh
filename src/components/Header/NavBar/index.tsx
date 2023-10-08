@@ -17,7 +17,7 @@ const NavBarItem = styled.div<{ selected?: boolean; }>`
     transition: opacity 0.5s;
     ${({ selected }) => selected ?
     css`
-        color: #2E2F38;
+        color: #17181C;
     `:
     css`
         color: #6A6D82;
@@ -35,6 +35,6 @@ export default function NavBar() {
 
     return (<StyledNavBar>
                 <NavBarItem selected={location.pathname === Path.Home} onClick={() => navigate(Path.Home)}>{t('home')}</NavBarItem>
-                <NavBarItem selected={location.pathname === Path.Blog} onClick={() => navigate(Path.Blog)}>{t('blog')}</NavBarItem>
+                <NavBarItem selected={location.pathname !== Path.Home} onClick={() => navigate(Path.Blog)}>{t('blog')}</NavBarItem>
         </StyledNavBar>);
 };
