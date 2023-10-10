@@ -10,12 +10,12 @@ const StyledNavBar = styled.div`
     width: 100%;
 `;
 
-const NavBarItem = styled.div<{ selected?: boolean; }>`
+const NavBarItem = styled.div<{ $selected?: boolean; }>`
     font-size: 14px;
     display: flex;
     margin: 26px 26px 16px;
     transition: opacity 0.5s;
-    ${({ selected }) => selected ?
+    ${({ $selected }) => $selected ?
     css`
         color: #17181C;
     `:
@@ -34,7 +34,7 @@ export default function NavBar() {
     const navigate = useNavigate();
 
     return (<StyledNavBar>
-                <NavBarItem selected={location.pathname === Path.Home} onClick={() => navigate(Path.Home)}>{t('home')}</NavBarItem>
-                <NavBarItem selected={location.pathname !== Path.Home} onClick={() => navigate(Path.Blog)}>{t('blog')}</NavBarItem>
+                <NavBarItem $selected={location.pathname === Path.Home} onClick={() => navigate(Path.Home)}>{t('home')}</NavBarItem>
+                <NavBarItem $selected={location.pathname !== Path.Home} onClick={() => navigate(Path.Blog)}>{t('blog')}</NavBarItem>
         </StyledNavBar>);
 };

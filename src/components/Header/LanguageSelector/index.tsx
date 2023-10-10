@@ -41,14 +41,14 @@ const LanguageOptions = styled.div<{ $show: boolean; $isLtr: boolean;}>`
         `}
 `;
 
-const LanguageOption = styled.div<{ selected: boolean; }>`
+const LanguageOption = styled.div<{ $selected: boolean; }>`
     font-size: 20px;
     line-height: 32px;
     text-align: center;
     padding: 5px 15px;
     color: #2E2F38;
 
-    ${({ selected }) => selected ? 
+    ${({ $selected }) => $selected ? 
         css`
             opacity: 0.38;
             cursor: default;
@@ -85,7 +85,7 @@ export default function LanguageSelector() {
     const handleMouseEvent = useCallback((event: MouseEvent) => {
         if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
             if (isOptionsShown) {
-                setIsOptionsShown(!isOptionsShown);
+                setIsOptionsShown(false);
             }
         }
     }, [isOptionsShown]);
@@ -101,8 +101,8 @@ export default function LanguageSelector() {
     return (<StyledLanguageSelector ref={wrapperRef}>
                 <LanguageIconWrapper onClick={() => setIsOptionsShown(!isOptionsShown)}><LanguageIcon /></LanguageIconWrapper>
                 <LanguageOptions $show={isOptionsShown} $isLtr={selectedLanguage === Language.En}>
-                    <LanguageOption selected={selectedLanguage === Language.En} onClick={() => changeLanguage(Language.En)}>English</LanguageOption>
-                    <LanguageOption selected={selectedLanguage === Language.He} onClick={() => changeLanguage(Language.He)}>עברית</LanguageOption>
+                    <LanguageOption $selected={selectedLanguage === Language.En} onClick={() => changeLanguage(Language.En)}>English</LanguageOption>
+                    <LanguageOption $selected={selectedLanguage === Language.He} onClick={() => changeLanguage(Language.He)}>עברית</LanguageOption>
                 </LanguageOptions>
             </StyledLanguageSelector>);
 };

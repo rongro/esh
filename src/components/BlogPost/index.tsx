@@ -66,9 +66,9 @@ export default function BlogPost() {
     const { t, i18n } = useTranslation();
     const navigate = useNavigate();
     const { post } = useLoaderData() as { post: Post };
+    const {id, date, image } = post;
     document.body.dir = i18n.dir();
 
-    const {id, date, image } = post;
 
     return <StyledPost>
                 <Header />

@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { Post } from '../../../api/blog';
 import { useNavigate } from 'react-router-dom';
@@ -23,7 +23,7 @@ const StyledPost = styled.div`
     cursor: pointer;
     display: flex;
     padding: 20px 15%;
-
+    align-items: center;
 
     &:hover ${PostImage} {
         transform: scale(1.5);
@@ -73,7 +73,6 @@ const PostDate = styled.div`
 
 export default function BlogPostItem(props: BlogPostItemProps) {
     const {id, date, image } = props.post;
-
     const { t } = useTranslation();
     const navigate = useNavigate();
 
