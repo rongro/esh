@@ -78,7 +78,7 @@ export default function Home() {
                 <Background>
                     <Video src="https://www.esh.com/assets/cover-vid.9f721ac5.mp4" autoPlay loop muted></Video>
                 </Background>
-                <Header />
+                <Header backgroundColor='transparent' />
                 <HomeContainer>
                     <HomeTitle>{t('new.bank.coming')}</HomeTitle>
                     <BlogLink onClick={() => navigate(Path.Blog)}>{t('home.blog.link')}</BlogLink>

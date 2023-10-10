@@ -4,8 +4,12 @@ import Logo from './Logo';
 import NavBar from './NavBar';
 import LanguageSelector from './LanguageSelector';
 
-const StyledHeader = styled.div`
-    background-color: white;
+type HeaderProps = {
+    backgroundColor?: string,
+}
+
+const StyledHeader = styled.div<{ backgroundColor: string}>`
+    background-color: ${({backgroundColor}) => backgroundColor};
     box-sizing: border-box;
     display: flex;
     height: 72px;
@@ -17,8 +21,10 @@ const StyledHeader = styled.div`
     width: 100vw;
 `;
 
-export default function Header() {
-    return (<StyledHeader>
+export default function Header(props: HeaderProps) {
+    const { backgroundColor = 'white' } = props;
+
+    return (<StyledHeader backgroundColor={backgroundColor}>
                 <Logo />
                 <NavBar />
                 <LanguageSelector />
