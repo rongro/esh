@@ -8,8 +8,8 @@ type HeaderProps = {
     backgroundColor?: string,
 }
 
-const StyledHeader = styled.div<{ backgroundColor: string}>`
-    background-color: ${({backgroundColor}) => backgroundColor};
+const StyledHeader = styled.div<{ $backgroundColor: string}>`
+    background-color: ${({$backgroundColor}) => $backgroundColor};
     box-sizing: border-box;
     display: flex;
     height: 72px;
@@ -24,7 +24,7 @@ const StyledHeader = styled.div<{ backgroundColor: string}>`
 export default function Header(props: HeaderProps) {
     const { backgroundColor = 'white' } = props;
 
-    return (<StyledHeader backgroundColor={backgroundColor}>
+    return (<StyledHeader $backgroundColor={backgroundColor}>
                 <Logo />
                 <NavBar />
                 <LanguageSelector />
