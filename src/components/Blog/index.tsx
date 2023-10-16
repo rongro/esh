@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useTranslation } from 'react-i18next';
-import '../../i18n/i18n';
 import Header from '../Header';
 import BlogPostItem from './BlogPostItem';
 import { getBlogPosts } from '../../api/blog';
@@ -14,13 +12,10 @@ const StyledBlog = styled.div`
 `;
 
 const BlogContainer = styled.div`
-    padding-top: 72px;
+    padding-top: 144px;
 `;
 
 export default function Blog() {
-    const { i18n } = useTranslation();
-    document.body.dir = i18n.dir();
-
     const { posts } = getBlogPosts();
 
     return (<StyledBlog>

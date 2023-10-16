@@ -21,7 +21,7 @@ const StyledPost = styled.div`
 `;
 
 const PostWrapper = styled.div`
-    padding: 72px 15% 20px;
+    padding: 144px 15% 20px;
 `;
 
 const Back = styled.div`
@@ -63,12 +63,10 @@ const PostDate = styled.div`
 `;
 
 export default function BlogPost() {
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     const navigate = useNavigate();
     const { post } = useLoaderData() as { post: Post };
-    const {id, date, image } = post;
-    document.body.dir = i18n.dir();
-
+    const { id, date, image } = post;
 
     return <StyledPost>
                 <Header />

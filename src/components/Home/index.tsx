@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from "react-router-dom";
 import { fadeIn } from '../../styles/animations';
 import { Path } from '../../router';
-import '../../i18n/i18n';
 import Header from '../Header';
 
 const StyledHome = styled.div`
@@ -69,10 +68,8 @@ const BlogLink = styled.div`
 `;
 
 export default function Home() {
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     const navigate = useNavigate();
-
-    document.body.dir = i18n.dir();
 
     return (<StyledHome>
                 <Background>

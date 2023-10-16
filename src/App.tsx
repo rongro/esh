@@ -1,26 +1,11 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useTranslation } from 'react-i18next';
+import { RouterProvider } from "react-router-dom";
+import router from './router';
+import './i18n/i18n';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+export default function App() {
+    const { i18n } = useTranslation();
+    document.body.dir = i18n.dir();
 
-export default App;
+    return <RouterProvider router={router} />;
+};
