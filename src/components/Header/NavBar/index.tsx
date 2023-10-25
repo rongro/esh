@@ -12,12 +12,13 @@ const StyledNavBar = styled.div`
 
 const NavBarItem = styled.div<{ $selected?: boolean; }>`
     font-size: 14px;
+    font-weight: 600;
     display: flex;
-    margin: 26px 26px 16px;
+    margin: 25px 26px 16px;
     transition: opacity 0.5s;
     ${({ $selected }) => $selected ?
     css`
-        color: #17181C;
+        color: #2E2F38;
     `:
     css`
         color: #6A6D82;
@@ -32,9 +33,10 @@ export default function NavBar() {
     const { t } = useTranslation();
 	const location = useLocation();
     const navigate = useNavigate();
+    const isHome = location.pathname === Path.Home;
 
     return (<StyledNavBar>
-                <NavBarItem $selected={location.pathname === Path.Home} onClick={() => navigate(Path.Home)}>{t('home')}</NavBarItem>
-                <NavBarItem $selected={location.pathname !== Path.Home} onClick={() => navigate(Path.Blog)}>{t('blog')}</NavBarItem>
+                <NavBarItem $selected={isHome} onClick={() => navigate(Path.Home)}>{t('home')}</NavBarItem>
+                <NavBarItem $selected={!isHome} onClick={() => navigate(Path.Blog)}>{t('blog')}</NavBarItem>
         </StyledNavBar>);
 };

@@ -40,15 +40,20 @@ const HomeContainer = styled.div`
     flex: 1 1 0%;
     justify-content: flex-end;
     flex-direction: column;
-    height: calc(50% + 250px);
+    height: calc(50% + 260px);
 `;
 
 
 const HomeTitle = styled.h3`
     opacity: 0;
+    font-family: 'PloniMLv2AAA-Medium', sans-serif;
+    font-style: normal;
+    font-weight: 500;
     font-size: 36px;
+    line-height: 36px;
     color: white;
     animation: ${fadeIn} 0.5s ease-in-out 4s forwards;
+    margin: 25px;
 `;
 
 const BlogLink = styled.div`
@@ -63,7 +68,7 @@ const BlogLink = styled.div`
     background: rgb(250, 247, 245);
     border-radius: 33.25px;
     cursor: pointer;
-    color: rgb(142, 30, 57);
+    color: #BB2649;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 25px;
 `;
 

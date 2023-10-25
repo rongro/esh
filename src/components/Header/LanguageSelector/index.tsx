@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import styled, { css } from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import { Language } from '../../../i18n/consts';
+import { Language, LanguageName } from '../../../i18n/consts';
 import LanguageIcon from '../LanguageIcon';
 import { fadeIn } from '../../../styles/animations';
 import '../../../i18n/i18n';
@@ -77,7 +77,6 @@ export default function LanguageSelector() {
         i18n.changeLanguage(lng);
         setSelectedLanguage(lng);
         setIsOptionsShown(false);
-        document.body.dir = i18n.dir();
     }, [i18n, selectedLanguage]);
     
     const wrapperRef = useRef<HTMLDivElement>(null);
@@ -101,8 +100,8 @@ export default function LanguageSelector() {
     return (<StyledLanguageSelector ref={wrapperRef}>
                 <LanguageIconWrapper onClick={() => setIsOptionsShown(!isOptionsShown)}><LanguageIcon /></LanguageIconWrapper>
                 <LanguageOptions $show={isOptionsShown} $isLtr={selectedLanguage === Language.En}>
-                    <LanguageOption $selected={selectedLanguage === Language.En} onClick={() => changeLanguage(Language.En)}>English</LanguageOption>
-                    <LanguageOption $selected={selectedLanguage === Language.He} onClick={() => changeLanguage(Language.He)}>עברית</LanguageOption>
+                    <LanguageOption $selected={selectedLanguage === Language.En} onClick={() => changeLanguage(Language.En)}>{LanguageName.En}</LanguageOption>
+                    <LanguageOption $selected={selectedLanguage === Language.He} onClick={() => changeLanguage(Language.He)}>{LanguageName.He}</LanguageOption>
                 </LanguageOptions>
             </StyledLanguageSelector>);
 };

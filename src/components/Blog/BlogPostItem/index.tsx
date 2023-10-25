@@ -72,7 +72,7 @@ const PostDate = styled.div`
 `;
 
 export default function BlogPostItem(props: BlogPostItemProps) {
-    const {id, date, image } = props.post;
+    const { id, date, image } = props.post;
     const { t } = useTranslation();
     const navigate = useNavigate();
 
