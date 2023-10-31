@@ -3,6 +3,7 @@ import Blog from './components/Blog';
 import BlogPost, {
   loader as blogPostLoader,
 } from './components/BlogPost';
+import { BlogPostItemProps } from './components/Blog/BlogPostItem';
 import { createBrowserRouter, LoaderFunction } from "react-router-dom";
 
 export enum Path {
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
   {
     path: Path.BlogPost,
     element: <BlogPost />,
-    loader: blogPostLoader as unknown as LoaderFunction<any>,
+    loader: blogPostLoader as unknown as LoaderFunction<BlogPostItemProps>,
   },
 ]);
 

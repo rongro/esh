@@ -5,7 +5,7 @@ import { Post } from '../../../api/blog';
 import { useNavigate } from 'react-router-dom';
 import { Path } from '../../../router';
 
-type BlogPostItemProps = {
+export type BlogPostItemProps = {
     post: Post,
 }
 
@@ -15,6 +15,8 @@ const PostImage = styled.div<{ $image: string; }>`
     background-image: url('${({ $image }) => $image}');
     background-size: cover;
     background-none;
+    transform: scale(1);
+    transition: transform 0.5s;
 `;
 
 

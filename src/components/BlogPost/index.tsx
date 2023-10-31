@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { useLoaderData, useNavigate } from 'react-router-dom';
-import { getBlogPost, Post } from "../../api/blog";
+import { getBlogPost } from "../../api/blog";
+import { BlogPostItemProps } from '../Blog/BlogPostItem';
 import Header from '../Header';
 
 type Props = {
@@ -65,7 +66,7 @@ const PostDate = styled.div`
 export default function BlogPost() {
     const { t } = useTranslation();
     const navigate = useNavigate();
-    const { post } = useLoaderData() as { post: Post };
+    const { post } = useLoaderData() as BlogPostItemProps;
     const { id, date, image } = post;
 
     return <StyledPost>
