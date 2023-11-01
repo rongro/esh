@@ -4,7 +4,7 @@ import Logo from './Logo';
 import NavBar from './NavBar';
 import LanguageSelector from './LanguageSelector';
 
-type HeaderProps = {
+interface HeaderProps {
     backgroundColor?: string,
 }
 

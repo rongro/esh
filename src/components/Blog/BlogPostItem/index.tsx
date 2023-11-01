@@ -5,7 +5,7 @@ import { Post } from '../../../api/blog';
 import { useNavigate } from 'react-router-dom';
 import { Path } from '../../../router';
 
-export type BlogPostItemProps = {
+export interface BlogPostItemProps {
     post: Post,
 }
 

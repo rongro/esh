@@ -6,7 +6,7 @@ import { getBlogPost } from "../../api/blog";
 import { BlogPostItemProps } from '../Blog/BlogPostItem';
 import Header from '../Header';
 
-type Props = {
+interface Props {
     params: {
         postId: string,
     }
