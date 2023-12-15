@@ -31,6 +31,7 @@ const LanguageOptions = styled.div<{ $show: boolean; $isLtr: boolean;}>`
         `: 
         css`
             opacity: 0;
+            display: none;
         `}
     ${({ $isLtr }) => $isLtr ? 
         css`
